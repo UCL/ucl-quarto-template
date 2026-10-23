@@ -1,0 +1,42 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.positron/
+
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Python
+__pycache__/
+*.pyc
+
+# Quarto render output
+/.quarto/
+/_freeze/
+/*.html
+/*.pdf
+/*.tex
+/*_files/
+*.quarto_ipynb
+
+# LaTeX build files (e.g. beamer/example.tex)
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.xdv
+_extensions/ucl/beamer/example.pdf
+
+# Source material not redistributed with the template
+*.pptx
+UCL Sans/

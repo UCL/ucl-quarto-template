@@ -1,0 +1,117 @@
+---
+title: "Main headline in 42pt UCL Sans SemiBold, no more than 2–3 lines"
+author:
+  - name: Name of presenter
+    affiliation: Faculty, department or unit
+date: today
+date-format: "D MMMM YYYY"
+footer: "Footer text"
+format:
+  ucl-revealjs: default
+  ucl-beamer: default
+---
+
+## Title in 36pt UCL Sans SemiBold, no more than 1–2 lines
+
+Use UCL Sans Regular no smaller than 24pt for body text, so it stays readable
+and accessible.
+
+Keep paragraphs short.
+
+And remember:
+
+- using bullet points
+- often makes text
+- easier to read
+
+## Title in 36pt UCL Sans SemiBold, no more than 1–2 lines {.dark}
+
+Use UCL Sans Regular no smaller than 24pt for body text, so it stays readable
+and accessible.
+
+- Add `{.dark}` to a slide heading for the dark mode version
+- Titles switch to mid purple, text to off-white
+
+# Divider slide title in 36pt UCL Sans SemiBold
+
+This slide can be used to introduce a new section. It can have just a title,
+or you can add body text in this text box too.
+
+## Title in 36pt UCL Sans SemiBold, no more than 1–2 lines
+
+:::: {.columns}
+::: {.column width="35%"}
+[Subheading in 30pt UCL Sans Regular]{.subheading}
+:::
+
+::: {.column width="65%"}
+Use UCL Sans Regular no smaller than 24pt for body text, so it stays readable
+and accessible.
+
+Keep paragraphs short.
+:::
+::::
+
+## Title in 36pt UCL Sans SemiBold, no more than 1–2 lines {.stripe}
+
+:::: {.columns}
+::: {.column width="50%"}
+Add `{.stripe}` for the layout with a narrow bright-purple band on the left.
+:::
+
+::: {.column width="50%"}
+- Using bullet points
+- often makes text
+- easier to read
+:::
+::::
+
+## Data visualisation colours
+
+Only use these colours in graphs and charts, in this order (dark and light
+alternate so neighbours contrast):
+
+::: {.content-visible when-format="html"}
+::: {.viz-swatches}
+[Dark purple<br>#361A54]{style="background:#361a54"}
+[Light green<br>#1AAB40]{style="background:#1aab40"}
+[Dark blue<br>#12239E]{style="background:#12239e"}
+[Light orange<br>#E66C37]{style="background:#e66c37"}
+[Dark green<br>#10433F]{style="background:#10433f"}
+[Light blue<br>#118DFF]{style="background:#118dff"}
+[Dark red<br>#751441]{style="background:#751441"}
+[Light pink<br>#E645AB]{style="background:#e645ab"}
+:::
+:::
+
+::: {.content-visible when-format="beamer"}
+```{=latex}
+\begin{center}\small\color{ucloffwhite}
+\foreach \c/\n in {1/Dark purple,2/Light green,3/Dark blue,4/Light orange,
+                    5/Dark green,6/Light blue,7/Dark red,8/Light pink}{%
+  \colorbox{uclviz\c}{\parbox[t][9mm]{14mm}{\tiny\n}}\hspace{0.5mm}}
+\end{center}
+```
+:::
+
+[Any chart using colour to convey meaning must include written alternatives
+such as labels or alt text.]{.small}
+
+## Code and tables
+
+```python
+import numpy as np
+
+x = np.linspace(0, 1, 100)
+print(x.mean())
+```
+
+| Column heading | Column heading |
+|----------------|----------------|
+| Row data       | Row data       |
+| Row data       | Row data       |
+| Row data       | Row data       |
+
+# Thank you
+
+your.name@ucl.ac.uk

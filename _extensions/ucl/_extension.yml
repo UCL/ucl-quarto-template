@@ -1,0 +1,26 @@
+title: UCL Presentation
+author: UCL ARC
+version: 0.2.0
+quarto-required: ">=1.4.0"
+contributes:
+  formats:
+    revealjs:
+      theme: [default, ucl.scss, ucl-assets.scss]
+      filters: [ucl.lua]
+      slide-number: c/t
+      width: 1600
+      height: 900
+      margin: 0
+      center: false
+      transition: none
+      menu: false
+      hash-type: number
+      title-slide-attributes:
+        data-background-color: "#361a54"
+        data-state: ucl-title
+    beamer:
+      pdf-engine: xelatex
+      aspectratio: 169
+      slide-level: 2
+      section-titles: false
+      filters: [ucl.lua]

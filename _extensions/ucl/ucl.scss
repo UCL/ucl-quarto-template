@@ -1,0 +1,376 @@
+/*-- scss:defaults --*/
+
+// Layout follows UCL-PowerPoint-Template-UCL-Sans-2.3.pptx (960x540pt),
+// scaled to a 1600x900 slide: 1pt = 1.667px.
+//
+// UCL Sans is bundled (ucl-assets.scss); DM Sans and Aptos are fallbacks.
+
+// Theme colours from the PowerPoint template
+$ucl-dark-purple: #361a54;
+$ucl-bright-purple: #993aff;
+$ucl-mid-purple: #b982ff;
+$ucl-light-purple: #ddbdff;
+$ucl-pale-purple: #eedeff;
+$ucl-blue: #30d6ff;
+$ucl-off-white: #fafafa;
+$ucl-black: #000000;
+
+// Data visualisation colours, in the template's recommended order
+// (alternating dark and light for contrast between neighbours)
+$ucl-viz-dark-purple: #361a54;
+$ucl-viz-light-green: #1aab40;
+$ucl-viz-dark-blue: #12239e;
+$ucl-viz-light-orange: #e66c37;
+$ucl-viz-dark-green: #10433f;
+$ucl-viz-light-blue: #118dff;
+$ucl-viz-dark-red: #751441;
+$ucl-viz-light-pink: #e645ab;
+
+$ucl-pad: 55px;          // 32-35pt inset used throughout the template
+$ucl-stripe: 53px;       // 32pt narrow bright-purple stripe
+
+$font-family-sans-serif: "UCL Sans", "DM Sans", Aptos, Arial, sans-serif;
+$font-family-monospace: "DM Mono", Menlo, Consolas, monospace;
+$ucl-heading-font: $font-family-sans-serif;
+
+$body-bg: $ucl-off-white;
+$body-color: $ucl-black;
+$link-color: $ucl-dark-purple;
+$selection-bg: $ucl-light-purple;
+
+$presentation-heading-font: $ucl-heading-font;
+$presentation-heading-color: $ucl-dark-purple;
+$presentation-heading-font-weight: 600;
+$presentation-heading-line-height: 1.1;
+$presentation-heading-text-transform: none;
+$presentation-font-size-root: 40px;      // 24pt body text
+$presentation-line-height: 1.25;
+$presentation-h1-font-size: 1.75em;      // 42pt
+$presentation-h2-font-size: 1.5em;       // 36pt
+$presentation-h3-font-size: 1.25em;      // 30pt subheading
+$presentation-list-bullet-color: $ucl-black;
+
+$code-block-bg: $ucl-pale-purple;
+$code-block-border-color: $ucl-light-purple;
+$code-color: $ucl-dark-purple;
+
+/*-- scss:rules --*/
+
+:root {
+  --ucl-dark-purple: #{$ucl-dark-purple};
+  --ucl-bright-purple: #{$ucl-bright-purple};
+  --ucl-mid-purple: #{$ucl-mid-purple};
+  --ucl-light-purple: #{$ucl-light-purple};
+  --ucl-pale-purple: #{$ucl-pale-purple};
+  --ucl-blue: #{$ucl-blue};
+  --ucl-off-white: #{$ucl-off-white};
+  --ucl-viz-1: #{$ucl-viz-dark-purple};
+  --ucl-viz-2: #{$ucl-viz-light-green};
+  --ucl-viz-3: #{$ucl-viz-dark-blue};
+  --ucl-viz-4: #{$ucl-viz-light-orange};
+  --ucl-viz-5: #{$ucl-viz-dark-green};
+  --ucl-viz-6: #{$ucl-viz-light-blue};
+  --ucl-viz-7: #{$ucl-viz-dark-red};
+  --ucl-viz-8: #{$ucl-viz-light-pink};
+}
+
+// ---------------------------------------------------------------------------
+// Base slide frame: every slide fills the 1600x900 canvas so stripes and
+// logos can be positioned against the slide edges.
+
+.reveal .slides section:not(.stack) {
+  height: 100%;
+  box-sizing: border-box;
+  padding: $ucl-pad $ucl-pad 130px $ucl-pad;
+  text-align: left;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3 {
+  font-synthesis: none;
+  letter-spacing: -0.005em;
+}
+
+.reveal h2 {
+  max-width: 82%;                        // title box stops short of the logo column
+  margin-bottom: 0.9em;
+}
+
+.reveal h3 {
+  font-family: $font-family-sans-serif;
+  font-weight: 400;
+  color: $ucl-dark-purple;
+}
+
+.reveal strong {
+  font-weight: 600;
+}
+
+.reveal a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.reveal ul,
+.reveal ul ul {
+  list-style-type: square;
+}
+
+.reveal li {
+  margin-top: 0.25em;
+}
+
+.reveal blockquote {
+  width: 100%;
+  margin: 1em 0;
+  padding: 0.3em 0 0.3em 0.9em;
+  border-left: 16px solid $ucl-bright-purple;
+  background: none;
+  box-shadow: none;
+  font-style: normal;
+  color: inherit;
+}
+
+.reveal table {
+  font-size: 0.75em;
+  margin-top: 0.5em;
+}
+
+.reveal table th {
+  border-bottom: 2px solid currentColor;
+}
+
+.reveal table tr:nth-child(even) td {
+  background: $ucl-pale-purple;
+}
+
+// Footer and slide number sit bottom-left, as in the template's
+// "with footer, page number" layouts.
+.reveal .footer {
+  font-size: 18px !important;
+  color: $ucl-dark-purple;
+  left: $ucl-pad + 80px !important;
+  right: auto !important;
+  bottom: $ucl-pad - 10px !important;
+  text-align: left !important;
+  display: block !important;
+
+  p {
+    margin: 0;
+    text-align: left;
+  }
+}
+
+.reveal .slide-number {
+  font-family: $font-family-sans-serif;
+  font-size: 18px !important;
+  color: $ucl-dark-purple !important;
+  background: none !important;
+  top: auto !important;
+  right: auto !important;
+  left: $ucl-pad !important;
+  bottom: $ucl-pad - 10px !important;
+  padding: 0;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.reveal.has-dark-background .footer,
+.reveal.has-dark-background .slide-number {
+  color: $ucl-off-white !important;
+}
+
+// ---------------------------------------------------------------------------
+// Dark mode slides: dark purple background, mid purple titles,
+// off-white body text.
+
+.reveal .slides section.has-dark-background {
+  color: $ucl-off-white;
+
+  h1,
+  h2 {
+    color: $ucl-mid-purple;
+  }
+
+  h3,
+  p,
+  li,
+  td,
+  th,
+  a {
+    color: $ucl-off-white;
+  }
+
+  code {
+    color: $ucl-light-purple;
+  }
+
+  table tr:nth-child(even) td {
+    background: rgba($ucl-off-white, 0.08);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Title slide: dark purple, wide bright-purple band on the left (107pt),
+// 42pt headline, presenter and date lower down, large logo bottom-right.
+
+.reveal .slides section.quarto-title-block {
+  display: flex !important;
+  flex-direction: column;
+  padding: 50px 400px 60px 302px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 178px;
+    height: 100%;
+    background: $ucl-bright-purple;
+  }
+
+  h1.title,
+  .subtitle {
+    text-align: left;
+  }
+
+  h1.title {
+    font-size: 70px;
+    line-height: 1.2;
+    color: $ucl-off-white;
+    margin: 0;
+  }
+
+  .subtitle {
+    font-family: $font-family-sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    color: $ucl-mid-purple;
+    margin-top: 0.6em;
+  }
+
+  .quarto-title-authors {
+    justify-content: flex-start;
+    margin: auto 0 0 0;               // push presenter + date to the lower part
+  }
+
+  .quarto-title-author {
+    padding-left: 0;
+  }
+
+  .quarto-title-author-name,
+  .quarto-title-affiliation,
+  .date {
+    font-size: 40px;
+    color: $ucl-off-white;
+    margin: 0;
+    text-align: left;
+  }
+
+  .quarto-title-affiliation {
+    font-size: 28px;
+    color: $ucl-light-purple;
+    margin-top: 0.2em;
+  }
+
+  .date {
+    margin-top: 0.4em;
+  }
+}
+
+.ucl-title .reveal .footer,
+.ucl-title .reveal .slide-number {
+  display: none !important;
+}
+
+// ---------------------------------------------------------------------------
+// Section divider (level-1 headings): dark purple with the narrow stripe at
+// the left edge and a wide band beside it; content starts at 404pt.
+
+.reveal .slides section.title-slide.level1:not(.quarto-title-block),
+.reveal .slides section.divider {
+  display: block !important;
+  padding: 53px 160px 130px 673px;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: $ucl-bright-purple;
+  }
+
+  &::before {
+    left: 0;
+    width: $ucl-stripe;
+  }
+
+  &::after {
+    left: 178px;
+    width: 248px;
+  }
+
+  h1,
+  h2 {
+    font-size: 60px;
+    max-width: none;
+    color: $ucl-off-white;
+    margin-bottom: 0.6em;
+  }
+}
+
+// Optional narrow stripe on ordinary content slides: `## Title {.stripe}`
+.reveal .slides section.stripe {
+  padding-left: $ucl-stripe + 52px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: $ucl-stripe;
+    height: 100%;
+    background: $ucl-bright-purple;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Utility classes
+
+.reveal .subheading {
+  font-size: 1.25em;                     // 30pt
+  line-height: 1.2;
+}
+
+.reveal .accent {
+  color: $ucl-bright-purple;
+}
+
+.reveal .callout-box {
+  border: 3px solid $ucl-bright-purple;
+  padding: 0.5em 0.8em;
+}
+
+.reveal .small {
+  font-size: 0.75em;
+}
+
+.reveal .viz-swatches p {
+  display: flex;
+  gap: 12px;
+  margin: 0.5em 0;
+
+  span {
+    flex: 1;
+    height: 90px;
+    padding: 8px;
+    font-size: 16px;
+    color: $ucl-off-white;
+    box-sizing: border-box;
+  }
+}

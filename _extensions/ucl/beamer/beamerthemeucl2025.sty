@@ -1,0 +1,286 @@
+% UCL beamer theme
+%
+% Follows UCL-PowerPoint-Template-UCL-Sans-2.3.pptx. Geometry is converted
+% from the 960x540pt PowerPoint slide to beamer's 160x90mm 16:9 page
+% (1 PowerPoint pt = 1/6 mm); type sizes are scaled by the same factor.
+%
+% Requires XeLaTeX or LuaLaTeX (for UCL Sans via fontspec).
+%
+% Usage:
+%   \documentclass[aspectratio=169]{beamer}
+%   \usetheme{ucl2025}                      % files in the same directory
+%   \usetheme[path=ucl/]{ucl2025}           % files in a subdirectory
+%
+% Frame options:
+%   \begin{frame}[dark]{...}      dark mode content slide
+%   \begin{frame}[stripe]{...}    narrow bright-purple band on the left
+%   \begin{frame}[divider]{...}   section divider
+%   \begin{frame}[nologo]{...}    no logo
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeucl2025}[2026/10/15 v0.1 UCL beamer theme]
+
+\RequirePackage{tikz}
+\RequirePackage{iftex}
+
+\def\ucl@path{}
+\DeclareOptionBeamer{path}{\def\ucl@path{#1}}
+\ProcessOptionsBeamer
+
+% ---------------------------------------------------------------------------
+% Colours (from the PowerPoint theme)
+
+\definecolor{ucldarkpurple}{HTML}{361A54}
+\definecolor{uclbrightpurple}{HTML}{993AFF}
+\definecolor{uclmidpurple}{HTML}{B982FF}
+\definecolor{ucllightpurple}{HTML}{DDBDFF}
+\definecolor{uclpalepurple}{HTML}{EEDEFF}
+\definecolor{uclblue}{HTML}{30D6FF}
+\definecolor{ucloffwhite}{HTML}{FAFAFA}
+
+% Data visualisation colours, in the recommended order
+\definecolor{uclviz1}{HTML}{361A54} % dark purple
+\definecolor{uclviz2}{HTML}{1AAB40} % light green
+\definecolor{uclviz3}{HTML}{12239E} % dark blue
+\definecolor{uclviz4}{HTML}{E66C37} % light orange
+\definecolor{uclviz5}{HTML}{10433F} % dark green
+\definecolor{uclviz6}{HTML}{118DFF} % light blue
+\definecolor{uclviz7}{HTML}{751441} % dark red
+\definecolor{uclviz8}{HTML}{E645AB} % light pink
+
+% ---------------------------------------------------------------------------
+% Fonts
+
+\ifTUTeX
+  \RequirePackage{fontspec}
+  \setsansfont{UCLSans}[
+    Path           = \ucl@path,
+    Extension      = .ttf,
+    UprightFont    = *-Regular,
+    ItalicFont     = *-Italic,
+    BoldFont       = *-SemiBold,
+    BoldItalicFont = *-SemiBoldItalic,
+  ]
+\else
+  \PackageWarning{beamerthemeucl2025}{UCL Sans needs XeLaTeX or LuaLaTeX;
+    falling back to the default font}
+\fi
+
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+
+% 24pt / 30pt / 36pt / 42pt in PowerPoint
+\setbeamerfont{normal text}{size=\fontsize{11.3}{13.6}\selectfont}
+\setbeamerfont{subheading}{size=\fontsize{14.2}{17}\selectfont}
+\setbeamerfont{frametitle}{size=\fontsize{17}{18.7}\selectfont, series=\bfseries}
+\setbeamerfont{title}{size=\fontsize{19.8}{23.8}\selectfont, series=\bfseries}
+\setbeamerfont{subtitle}{size=\fontsize{11.3}{13.6}\selectfont}
+\setbeamerfont{author}{size=\fontsize{11.3}{13.6}\selectfont}
+\setbeamerfont{institute}{size=\fontsize{8.5}{10.2}\selectfont}
+\setbeamerfont{date}{size=\fontsize{11.3}{13.6}\selectfont}
+\setbeamerfont{footline}{size=\fontsize{6}{7}\selectfont}
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
+\setbeamerfont{itemize/enumerate subsubbody}{size=\normalsize}
+
+\AtBeginDocument{\usebeamerfont{normal text}}
+
+% Left-aligned, ragged-right text without hyphenation, as in PowerPoint
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% ---------------------------------------------------------------------------
+% Colours for the default (light) slides
+
+% Beamer colours point at indirect colours (ucl@...). Frame options only
+% \colorlet these (globally), because calling \setbeamercolor inside a frame option
+% breaks fragile frames.
+\newcommand{\ucl@lightcolours}{%
+  \globalcolorstrue
+  \colorlet{ucl@fg}{black}%
+  \colorlet{ucl@bg}{ucloffwhite}%
+  \colorlet{ucl@title}{ucldarkpurple}%
+  \colorlet{ucl@foot}{ucldarkpurple}%
+  \colorlet{ucl@sub}{ucldarkpurple}%
+  \colorlet{ucl@blockfg}{black}%
+  \colorlet{ucl@blockbg}{uclpalepurple}%
+  \globalcolorsfalse
+}
+\newcommand{\ucl@darkcolours}{%
+  \globalcolorstrue
+  \colorlet{ucl@fg}{ucloffwhite}%
+  \colorlet{ucl@bg}{ucldarkpurple}%
+  \colorlet{ucl@title}{uclmidpurple}%
+  \colorlet{ucl@foot}{ucloffwhite}%
+  \colorlet{ucl@sub}{ucloffwhite}%
+  \colorlet{ucl@blockfg}{ucloffwhite}%
+  \colorlet{ucl@blockbg}{ucldarkpurple!80!uclmidpurple}%
+  \globalcolorsfalse
+}
+\ucl@lightcolours
+
+% beamer copies the normal text colour into `fg' before frame options run
+\newcommand{\ucl@applyfg}{\colorlet{fg}{ucl@fg}\color{ucl@fg}}
+
+\setbeamercolor{normal text}{fg=ucl@fg, bg=ucl@bg}
+\setbeamercolor{background canvas}{bg=ucl@bg}
+\setbeamercolor{structure}{fg=ucl@title}
+\setbeamercolor{frametitle}{fg=ucl@title}
+\setbeamercolor{alerted text}{fg=uclbrightpurple}
+\setbeamercolor{itemize item}{fg=ucl@fg}
+\setbeamercolor{itemize subitem}{fg=ucl@fg}
+\setbeamercolor{enumerate item}{fg=ucl@fg}
+\setbeamercolor{footline}{fg=ucl@foot}
+\setbeamercolor{block title}{fg=ucloffwhite, bg=ucldarkpurple}
+\setbeamercolor{block body}{fg=ucl@blockfg, bg=ucl@blockbg}
+\setbeamercolor{subheading}{fg=ucl@sub}
+
+\setbeamertemplate{itemize items}[square]
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{blocks}[default]
+
+% ---------------------------------------------------------------------------
+% Layout: 35pt margins, title at 33pt, body from ~150pt
+
+\setbeamersize{text margin left=5.8mm, text margin right=5.8mm}
+\beamer@centeredfalse % top-align frame content, as in the template
+
+\setbeamertemplate{frametitle}{%
+  \vspace*{3.5mm}%
+  \begin{minipage}[t]{\dimexpr0.82\linewidth\relax}%
+    \raggedright\usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}%
+    \insertframetitle\par
+  \end{minipage}%
+  \vspace*{5mm}%
+}
+
+% Page furniture is drawn per page in the background. \ucl@mode is set by the
+% frame options below (or by the title page) and reset after each page.
+\def\ucl@mode{normal}
+\newif\ifucl@logo \ucl@logotrue
+
+\newcommand{\ucl@logo}[2]{% #1 = file, #2 = width
+  \node[anchor=south east, inner sep=0pt] at (\paperwidth-5.33mm, 5.2mm)
+    {\includegraphics[width=#2]{\ucl@path #1}};}
+
+\setbeamertemplate{background canvas}{%
+  \begin{tikzpicture}[x=1mm, y=1mm]
+    \useasboundingbox (0,0) rectangle (\paperwidth,\paperheight);
+    \def\ucl@tmp{normal}\ifx\ucl@mode\ucl@tmp
+      \fill[ucloffwhite] (0,0) rectangle (\paperwidth,\paperheight);
+    \else\def\ucl@tmp{stripe}\ifx\ucl@mode\ucl@tmp
+      \fill[ucloffwhite] (0,0) rectangle (\paperwidth,\paperheight);
+      \fill[uclbrightpurple] (0,0) rectangle (5.33,\paperheight);
+    \else
+      \fill[ucldarkpurple] (0,0) rectangle (\paperwidth,\paperheight);
+    \fi\fi
+    \def\ucl@tmp{title}\ifx\ucl@mode\ucl@tmp
+      \fill[uclbrightpurple] (0,0) rectangle (17.83,\paperheight);
+    \fi
+    \def\ucl@tmp{divider}\ifx\ucl@mode\ucl@tmp
+      \fill[uclbrightpurple] (0,0) rectangle (5.33,\paperheight);
+      \fill[uclbrightpurple] (17.83,0) rectangle (42.67,\paperheight);
+    \fi
+    \ifucl@logo
+      \def\ucl@tmp{title}\ifx\ucl@mode\ucl@tmp
+        \node[anchor=south east, inner sep=0pt] at (\paperwidth-5.33mm, 5.2mm)
+          {\includegraphics[width=37.3mm]{\ucl@path ucl-logo-white.png}};
+      \else\def\ucl@tmp{normal}\ifx\ucl@mode\ucl@tmp
+        \ucl@logo{ucl-logo-purple.png}{18.7mm}
+      \else\def\ucl@tmp{stripe}\ifx\ucl@mode\ucl@tmp
+        \ucl@logo{ucl-logo-purple.png}{18.7mm}
+      \else
+        \ucl@logo{ucl-logo-white.png}{18.7mm}
+      \fi\fi\fi
+    \fi
+    \def\ucl@tmp{title}\ifx\ucl@mode\ucl@tmp\ucl@titletext\fi
+  \end{tikzpicture}%
+}
+
+
+% Footline: slide number and optional footer text bottom-left.
+% Set the footer with \renewcommand{\uclfooter}{...}.
+\newcommand{\uclfooter}{}
+\setbeamertemplate{footline}{%
+  \def\ucl@tmp{title}\ifx\ucl@mode\ucl@tmp\else
+    \usebeamerfont{footline}\usebeamercolor[fg]{footline}%
+    \hspace*{5.8mm}\insertframenumber\,/\,\inserttotalframenumber
+    \hspace{4mm}\uclfooter
+  \fi
+  \vspace*{5.5mm}%
+}
+
+% ---------------------------------------------------------------------------
+% Frame options
+
+% Per-frame indentation (\setbeamersize only works in the preamble).
+% Paragraphs and lists are indented with \leftskip/\rightskip and \linewidth;
+% columns are shifted by the hook below. \textwidth itself is left alone
+% because beamer uses it to assemble the page.
+\newlength{\ucl@indent}
+\newcommand{\ucl@shift}[2]{% #1 = extra left, #2 = extra right
+  \ucl@indent=#1\relax
+  \leftskip=#1\relax \rightskip=#2 plus 1fil\relax
+  \linewidth=\textwidth
+  \advance\linewidth by -#1\relax
+  \advance\linewidth by -#2\relax
+  \columnwidth=\linewidth
+}
+
+\AddToHook{env/columns/begin}{%
+  \ifdim\ucl@indent>\z@
+    \textwidth=\linewidth
+    \beamer@leftmargin=-\ucl@indent
+    \beamer@rightmargin=\ucl@indent
+  \fi}
+
+% Frame options are not processed inside a group, so reset everything
+% at the start of each frame.
+\AddToHook{env/frame/before}{%
+  \gdef\ucl@mode{normal}\global\ucl@logotrue
+  \ucl@indent=\z@ \leftskip=\z@ \rightskip=\z@ plus 1fil
+  \linewidth=\textwidth \columnwidth=\textwidth
+  \ucl@lightcolours\ucl@applyfg}
+
+\define@key{beamerframe}{dark}[true]{%
+  \gdef\ucl@mode{dark}\ucl@darkcolours\ucl@applyfg}
+
+\define@key{beamerframe}{stripe}[true]{%
+  \gdef\ucl@mode{stripe}%
+  \ucl@shift{11.7mm}{0mm}}
+
+\define@key{beamerframe}{divider}[true]{%
+  \gdef\ucl@mode{divider}\ucl@darkcolours
+  {\globalcolorstrue\colorlet{ucl@title}{ucloffwhite}}\ucl@applyfg
+  \ucl@shift{61.5mm}{10mm}}
+
+\define@key{beamerframe}{nologo}[true]{\global\ucl@logofalse}
+
+% ---------------------------------------------------------------------------
+% Title page: headline at top, presenter/date lower down, large logo.
+% \titlepage only switches the mode; the text is drawn with the background.
+
+\setbeamertemplate{title page}{\gdef\ucl@mode{title}}
+
+\newcommand{\ucl@titletext}{%
+  \node[anchor=north west, inner sep=0pt, text width=85mm, align=left,
+        text=ucloffwhite] at (30.17, 90-5)
+    {\usebeamerfont{title}\inserttitle\par
+     \ifx\insertsubtitle\@empty\else
+       \vspace{2.5mm}\usebeamerfont{subtitle}\color{uclmidpurple}\insertsubtitle\par
+     \fi};
+  \node[anchor=north west, inner sep=0pt, text width=85mm, align=left,
+        text=ucloffwhite] at (30.17, 90-58.7)
+    {\usebeamerfont{author}\insertauthor\par
+     \ifx\beamer@shortinstitute\@empty\else
+       \vspace{0.5mm}\usebeamerfont{institute}\color{ucllightpurple}\insertinstitute\par
+     \fi
+     \vspace{1.5mm}\usebeamerfont{date}\color{ucloffwhite}\insertdate\par};
+}
+
+% ---------------------------------------------------------------------------
+% Utilities
+
+\newcommand{\subheading}[1]{%
+  {\usebeamerfont{subheading}\usebeamercolor[fg]{subheading}#1\par}}
+
+\endinput

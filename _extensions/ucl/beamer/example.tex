@@ -1,0 +1,52 @@
+% Standalone example: compile with xelatex or lualatex from this directory,
+% or copy this directory into your project and use \usetheme[path=<dir>/]{ucl2025}.
+\documentclass[aspectratio=169]{beamer}
+\usetheme{ucl2025}
+\renewcommand{\uclfooter}{Footer text}
+
+\title{Main headline in 42pt UCL Sans SemiBold, no more than 2--3 lines}
+\author{Name of presenter}
+\institute{Faculty, department or unit}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Title in 36pt UCL Sans SemiBold, no more than 1--2 lines}
+  Use UCL Sans Regular no smaller than 24pt for body text, so it stays
+  readable and accessible.
+
+  Keep paragraphs short.
+  \begin{itemize}
+    \item using bullet points
+    \item often makes text
+    \item easier to read
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[dark]{Title in 36pt UCL Sans SemiBold, no more than 1--2 lines}
+  The dark mode version of a content slide.
+\end{frame}
+
+\section{Divider}
+\begin{frame}[divider]{Divider slide title in 36pt UCL Sans SemiBold}
+  This slide can be used to introduce a new section.
+\end{frame}
+
+\begin{frame}[stripe]{Title in 36pt UCL Sans SemiBold, no more than 1--2 lines}
+  \begin{columns}[T]
+    \column{0.35\textwidth}
+      \subheading{Subheading in 30pt UCL Sans Regular}
+    \column{0.6\textwidth}
+      Use UCL Sans Regular no smaller than 24pt for body text.
+  \end{columns}
+\end{frame}
+
+\begin{frame}[divider]{Thank you}
+  your.name@ucl.ac.uk
+\end{frame}
+
+\end{document}
