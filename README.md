@@ -6,7 +6,7 @@ type sizes, logos, UCL Sans).
 
 ## Installation
 
-Quarto has no global extension folder: it looks for `_extensions/` next to the
+Quarto has no global extension folder. It looks for `_extensions/` next to the
 document or in its project. Keep this folder (or a git repo of it) as the master
 copy and bring it into each project in one of these ways. Below,
 `/path/to/ucl-arc-template` can also be a GitHub `<org>/<repo>`.
@@ -144,6 +144,8 @@ Restart any open applications so they see the new font.
 - **Font:** see [UCL Sans font](#ucl-sans-font). The bundled copies work
   offline and on machines without UCL Sans installed.
 - **Logos:** taken from the PowerPoint template (`_extensions/ucl/assets`).
+  The UCL logos are trademarks of UCL and are not covered by the MIT licence;
+  use them in line with UCL's brand guidelines.
 - The beamer theme uses the TTF fonts and logo PNGs in `_extensions/ucl/beamer`.
 - For HTML, fonts and logos are inlined into `ucl-assets.scss`. If you change any of
   them, run `python3 _extensions/ucl/make-assets.py`.

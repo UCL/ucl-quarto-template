@@ -40,3 +40,5 @@ _extensions/ucl/beamer/example.pdf
 # Source material not redistributed with the template
 *.pptx
 UCL Sans/
+
+/.luarc.json
